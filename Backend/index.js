@@ -76,7 +76,7 @@ app.post("/uploads", upload.single("video"), async (req, res) => {
       return res.status(500).json({ error: "SRT file not generated" });
     } 
 
-    const captions = parseSRT(srtPath);
+    const captions = parseSRT(srtPath, 30);
 
     res.json({
       videoFilePath,

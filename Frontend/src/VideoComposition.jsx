@@ -2,7 +2,7 @@ import { UserVideoComposition } from "./UserVideoComposition";
 import { Composition } from "remotion";
 import {useState , useEffect} from 'react'
 
-export const VideoComposition = ({ videoFile, captions, metadata }) => {
+export const VideoComposition = ({ videoFile, captions, metadata, captionPosition = 'bottom' }) => {
   const [videoURL, setVideoURL] = useState(null);
   
   
@@ -26,7 +26,7 @@ export const VideoComposition = ({ videoFile, captions, metadata }) => {
       fps={metadata.fps}
       width={metadata.width}
       height={metadata.height}
-      defaultProps={{ videoURL, captions }} 
+      defaultProps={{ videoURL, captions, captionPosition }} 
     />
   );  
 };
