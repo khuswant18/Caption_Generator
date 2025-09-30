@@ -14,7 +14,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
 Ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
 function extractAudio(videoFilePath, wavPath) {
@@ -22,15 +21,14 @@ function extractAudio(videoFilePath, wavPath) {
     Ffmpeg(videoFilePath)
       .output(wavPath)
       .audioCodec("pcm_s16le")
-      .format("wav")
+      .format("wav") 
       .on("end", () => resolve())
       .on("error", (err) => reject(err))
-      .run();
+      .run(); 
   });
-}
+} 
 
-
-const upload = multer({
+const upload = multer({ 
   dest: "uploads/",
   limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
@@ -51,9 +49,7 @@ app.post("/uploads", upload.single("video"), async (req, res) => {
     const wavPath = `${videoFilePath}.wav`;
     const srtPath = wavPath.replace(/\.wav$/, ".wav.srt");
 
-
     await extractAudio(videoFilePath, wavPath);
-
 
     const whisperPath =
       process.env.WHISPER_PATH ||
@@ -62,15 +58,14 @@ app.post("/uploads", upload.single("video"), async (req, res) => {
       process.env.WHISPER_MODEL_PATH ||
       path.join(process.cwd(), "whisper.cpp/models/ggml-small.bin");
 
-
     await new Promise((resolve, reject) => {
-      exec(
-        `"${whisperPath}" -m "${modelPath}" -f "${wavPath}" -l hi -osrt`,
+      exec( 
+        `"${whisperPath}" -m "${modelPath}" -f "${wavPath}" -osrt`,
         (err, stdout, stderr) => {
           if (err) {
             console.error("Whisper error:", stderr || err);
             return reject(err);
-          }
+          } 
           resolve();
         }
       );
@@ -79,10 +74,9 @@ app.post("/uploads", upload.single("video"), async (req, res) => {
     if (!fs.existsSync(srtPath)) {
       console.error("SRT file not found at:", srtPath);
       return res.status(500).json({ error: "SRT file not generated" });
-    }
+    } 
 
     const captions = parseSRT(srtPath);
-
 
     res.json({
       videoFilePath,

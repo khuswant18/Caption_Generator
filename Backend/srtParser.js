@@ -9,14 +9,14 @@ function parseTime(srtTime) {
   return h * 3600 + m * 60 + s + Number(ms) / 1000;  
 
 }
-
+ 
 export function parseSRT(srtFilePath,fps = 30){ 
   const srtContent = fs.readFileSync(srtFilePath, "utf-8");
   const captions = []; 
 
   const blocks = srtContent.split("\n\n");
 
-  for (let block of blocks) {
+  for (let block of blocks) { 
 
     const lines = block.split("\n").filter(Boolean); //Boolean("") → false → removes the empty last element.
 

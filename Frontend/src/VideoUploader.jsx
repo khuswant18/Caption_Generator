@@ -40,7 +40,7 @@ export const VideoUploader = ({ onupload }) => {
     setLoading(true);
 
     try {
-      // Extract video metadata first
+
       const metadata = await getVideoMetadata(file);
 
       let captions = null;
@@ -59,7 +59,6 @@ export const VideoUploader = ({ onupload }) => {
 
       setTimeout(() => {
         setLoading(false);
-        // Pass metadata along with file, captions, and language
         onupload(
           file,
           captions,

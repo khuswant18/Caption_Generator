@@ -14,7 +14,6 @@ export const VideoEditorUi = () => {
       {!videoFile ? (
         <VideoUploader  
           onupload={(file, captions, metadata, language, autoGenerate) => {
-            //this is a parent who wants video and caption so it is sending to its children as prop
             setVideoFile(file);
             setCaption(captions); 
             setVideoMetadata(metadata);
