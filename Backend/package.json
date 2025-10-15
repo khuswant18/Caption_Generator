@@ -7,10 +7,16 @@
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["whisper", "captions", "transcription", "ai"],
+  "keywords": [
+    "whisper",
+    "captions",
+    "transcription",
+    "ai"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@remotion/renderer": "^4.0.362",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
