@@ -1,5 +1,5 @@
 const express = require('express');
-const transcribeRoute = require('./routes/transcribe.routes');
+const transcribeRoute = require('./routes/transcriptions.routes');
 const cors = require('cors');
 const dotenv = require('dotenv');
 

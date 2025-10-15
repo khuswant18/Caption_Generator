@@ -16,7 +16,8 @@ transcribeRoute.post('/', upload.single('video'), async (req, res) => {
   const audioPath = path.join('uploads', `audio_${timestamp}.wav`);
   const outputFile = path.join('uploads', `output_${timestamp}.json`);
  
-  try {
+  try { 
+    
 
     if (!fs.existsSync('uploads')) {
       fs.mkdirSync('uploads');

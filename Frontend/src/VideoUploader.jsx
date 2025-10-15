@@ -94,20 +94,6 @@ export const VideoUploader = ({ onupload }) => {
   return (
     <div className="w-full max-w-2xl mx-auto p-6">
       <div className="space-y-4 mb-6">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Select Caption Language:
-          </label>
-          <select
-            value={selectedLanguage}
-            onChange={(e) => setSelectedLanguage(e.target.value)}
-            className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-gray-900"
-            disabled={!autoGenerateCaptions}
-          >
-            <option value="english">English</option>
-            <option value="hindi">Hindi</option>
-          </select>
-        </div>
 
         <div className="flex items-center space-x-3">
           <button

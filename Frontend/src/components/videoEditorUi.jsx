@@ -34,7 +34,6 @@ export const VideoEditorUi = () => {
           />
           <div className="mt-4 text-center text-sm text-gray-600 space-y-3">
             <div className="flex justify-center items-center gap-6 flex-wrap">
-              <p>Language: <span className="font-semibold">{selectedLanguage === 'english' ? 'English' : 'Hindi'}</span></p>
               <p>Captions: <span className={`font-semibold ${captionsEnabled ? 'text-green-600' : 'text-gray-500'}`}>
                 {captionsEnabled ? 'Generated' : 'Disabled'}
               </span></p>
