@@ -12,13 +12,13 @@ export const VideoComposition = ({ videoFile, captions, metadata, captionPositio
       setVideoURL(url);
       return () => URL.revokeObjectURL(url);
     } 
-  }, [videoFile]);
+  }, [videoFile]); 
 
   if (!videoURL || !metadata) return null;
 
   const durationInFrames = Math.ceil(metadata.duration * metadata.fps);
 
-  return (
+  return ( 
     <Composition
       id="UserVideo"
       component={UserVideoComposition}

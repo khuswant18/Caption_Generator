@@ -80,7 +80,7 @@ export const UserVideoComposition = ({ videoURL, captions, captionPosition = 'bo
       );
     }
     return text;
-  };
+  }; 
 
   const currentCaption = getCurrentCaption();
 

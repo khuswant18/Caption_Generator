@@ -41,7 +41,7 @@ const upload = multer({
 });
 
 app.post("/uploads", upload.single("video"), async (req, res) => {
-  try {
+  try { 
     if (!req.file) return res.status(400).json({ error: "No video uploaded" });
 
     const videoFilePath = req.file.path;
@@ -76,7 +76,7 @@ app.post("/uploads", upload.single("video"), async (req, res) => {
       return res.status(500).json({ error: "SRT file not generated" });
     } 
 
-    const captions = parseSRT(srtPath, 30);
+    const captions = parseSRT(srtPath, 30); ///////
 
     res.json({
       videoFilePath,

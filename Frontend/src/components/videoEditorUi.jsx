@@ -12,7 +12,7 @@ export const VideoEditorUi = () => {
   
   return ( 
     <>
-      {!videoFile ? (
+      {!videoFile ? ( 
         <VideoUploader  
           onupload={(file, captions, metadata, language, autoGenerate) => {
             setVideoFile(file);
@@ -21,11 +21,11 @@ export const VideoEditorUi = () => {
             setSelectedLanguage(language);
             setCaptionsEnabled(autoGenerate);
           }}
-        /> 
+        />  
       ) : (
         <>
           <VideoComposition 
-            videoFile={videoFile} 
+            videoFile={videoFile}  
             captions={caption}  
             metadata={videoMetadata}
             language={selectedLanguage}
