@@ -1,17 +1,17 @@
-# Caption Generator 🎬
+# Caption Generator 
 
 AI-powered video caption generator with automatic Hindi/Hinglish support. Upload a video, get auto-generated captions with live preview using Remotion.
 
-## ✨ Features
+##  Features
 
-- 🎙️ **AI Speech Recognition** - Whisper AI with specialized Hindi2Hinglish model
-- 🇮🇳 **Hinglish Support** - Converts Hindi audio to Roman script (Hinglish)
-- 🎥 **Live Preview** - Real-time video preview with captions using Remotion
-- 🎨 **Customizable** - Adjust caption position (top/bottom) and styling
-- ⚡ **Smart Segmentation** - Auto-breaks long sentences into readable chunks
-- 📹 **MP4 Support** - Works with standard MP4 video files
+-  **AI Speech Recognition** - Whisper AI with specialized Hindi2Hinglish model
+-  **Hinglish Support** - Converts Hindi audio to Roman script (Hinglish)
+-  **Live Preview** - Real-time video preview with captions using Remotion
+-  **Customizable** - Adjust caption position (top/bottom) and styling
+-  **Smart Segmentation** - Auto-breaks long sentences into readable chunks
+-  **MP4 Support** - Works with standard MP4 video files
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
                                                                          
@@ -131,7 +131,7 @@ video: <MP4 file>
 }
 ```
 
-## ⚙️ Configuration
+## Configuration
 
 **Backend Port** (`.env` in Backend/)
 ```env
@@ -143,7 +143,7 @@ PORT=4000
 Config.setPort(3001);
 ```
 
-## 🎨 Caption Customization
+## Caption Customization
 
 Edit `Frontend/src/UserVideoComposition.jsx`:
 
@@ -153,7 +153,7 @@ width: "80%",                          // Caption width
 backgroundColor: "rgba(0, 0, 0, 0.75)", // Background opacity
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 **Port 3000/3001 in use?**
 ```bash
@@ -189,5 +189,3 @@ MIT License - feel free to use for your projects!
 ---
 
 **Made with ❤️ by [Khuswant Raj Purohit](https://github.com/khuswant18)**
-
-⭐ Star this repo if you found it helpful!
