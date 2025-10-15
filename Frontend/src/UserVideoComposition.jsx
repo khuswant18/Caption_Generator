@@ -26,14 +26,14 @@ export const UserVideoComposition = ({ videoURL, captions, captionPosition = 'bo
     width: "80%",
     textAlign: "center",
     color: "#ffffff",
-    fontSize: "clamp(16px, 2.5vw, 28px)", 
+    fontSize: "clamp(24px, 4vw, 48px)", 
     fontFamily: "'Roboto', 'Arial', sans-serif",
     fontWeight: "500",
     lineHeight: 1.3,
     letterSpacing: "0.3px",
     
     textShadow: `
-      -1px -1px 0 #000,
+      -1px -1px 0 #000, 
       1px -1px 0 #000,
       -1px 1px 0 #000,
       1px 1px 0 #000,
@@ -96,3 +96,4 @@ export const UserVideoComposition = ({ videoURL, captions, captionPosition = 'bo
     </div>
   );
 };
+ 

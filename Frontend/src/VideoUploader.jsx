@@ -15,7 +15,7 @@ export const VideoUploader = ({ onupload }) => {
         const metadata = {
           width: video.videoWidth,
           height: video.videoHeight,
-          duration: video.duration,
+          duration: video.duration, 
           fps: 30, 
         };
         URL.revokeObjectURL(video.src);
@@ -49,12 +49,20 @@ export const VideoUploader = ({ onupload }) => {
         const formData = new FormData();
         formData.append("video", file);
 
-        const res = await fetch("http://localhost:4000/uploads", {
+        const res = await fetch("http://localhost:4000/api/v1/transcribe", {
         method: "POST",
         body: formData,
       });
       const data = await res.json();
-      captions = data.captions;
+      
+     
+      if (data.captions && Array.isArray(data.captions)) {
+        captions = data.captions.map(caption => ({
+          ...caption,
+          startFrame: Math.floor(caption.start * metadata.fps),
+          endFrame: Math.floor(caption.end * metadata.fps)
+        }));
+      }
       }
 
       setTimeout(() => {
@@ -204,8 +212,6 @@ export const VideoUploader = ({ onupload }) => {
                   ? "We're analyzing your video and generating captions..."
                   : "We're processing your video..."}
               </p>
-
-            
             </div>
           </div>
         )}

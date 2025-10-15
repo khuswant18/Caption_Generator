@@ -1,41 +1,44 @@
 # Caption Generator 🎬
 
-An AI-powered video caption generator that automatically creates subtitles for uploaded videos using OpenAI's Whisper model. Built with React (Remotion) frontend and Node.js backend.
+An AI-powered video caption generator that automatically creates subtitles for uploaded videos using Whisper AI with specialized Hindi-to-Hinglish support. Built with React (Remotion) frontend and Node.js backend.
 
 ## ✨ Features
 
-- **Automatic Speech Recognition**: Uses Whisper.cpp for accurate speech-to-text conversion
-- **Multi-language Support**: Supports English and Hindi caption generation
+- **Automatic Speech Recognition**: Uses Whisper AI with specialized Hindi2Hinglish model
+- **Hinglish Support**: Native support for Hindi and Hinglish (Hindi written in Roman script) captions
+- **Multi-language Support**: Supports English and Hindi/Hinglish caption generation
 - **Video Processing**: Extracts audio from video files for transcription
 - **Real-time Preview**: Live preview of videos with generated captions using Remotion
 - **Modern UI**: Clean, responsive interface built with React and Tailwind CSS
+- **Caption Positioning**: Choose between top, bottom, or center caption placement
+- **Smart Segmentation**: Automatically breaks long sentences into readable caption segments
 - **Format Support**: Handles MP4 video files
-- **Caption Export**: Generates SRT subtitle files
 
 ## 🏗️ Architecture
 
 ### Frontend (Remotion + React)
 - **React 19** with modern hooks
 - **Remotion** for video composition and preview
-- **Tailwind CSS** for styling
+- **Tailwind CSS v4** for styling
 - **Video uploading and processing UI**
-- **Real-time caption preview**
+- **Real-time caption preview with positioning controls**
 
-### Backend (Node.js + Express)
+### Backend (Node.js + Express + Python)
 - **Express.js** server with CORS support
 - **Multer** for file upload handling
 - **FFmpeg** for audio extraction
-- **Whisper.cpp** integration for speech recognition
-- **SRT file parsing and processing**
+- **Python Whisper** with transformers for speech recognition
+- **Specialized Hindi2Hinglish model** for accurate transcription
+- **JSON-based caption processing**
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
 - Node.js (v16 or higher)
+- Python 3.8 or higher
 - npm or yarn
 - FFmpeg installed on your system
-- Whisper.cpp compiled with models
 
 ### Installation
 
@@ -51,14 +54,13 @@ An AI-powered video caption generator that automatically creates subtitles for u
    npm install
    ```
 
-3. **Setup Whisper.cpp**
+3. **Setup Python Environment**
    ```bash
-   # The whisper.cpp directory should already be included
-   cd whisper.cpp
-   make
+   # Run the setup script (recommended)
+   ./setup.sh
    
-   # Download a Whisper model (e.g., small model)
-   bash ./models/download-ggml-model.sh small
+   # OR manually install Python dependencies
+   pip install -r requirements.txt
    ```
 
 4. **Setup Frontend**
@@ -73,8 +75,11 @@ Create a `.env` file in the Backend directory:
 
 ```env
 PORT=4000
-WHISPER_PATH=./whisper.cpp/build/bin/whisper-cli
-WHISPER_MODEL_PATH=./whisper.cpp/models/ggml-small.bin
+PYTHON_PATH=python3
+WHISPER_PY_PATH=./whisper.py
+
+# If using virtual environment
+# PYTHON_PATH=./venv/bin/python
 ```
 
 ## 🎯 Usage
@@ -93,18 +98,21 @@ WHISPER_MODEL_PATH=./whisper.cpp/models/ggml-small.bin
    cd Frontend
    npm run dev
    ```
-   Remotion Studio will open in your browser
+   Remotion Studio will run on `http://localhost:3001`
+   
+   > **Note:** The frontend is configured to use port 3001 by default to avoid conflicts with other applications commonly running on port 3000.
 
 ### Using the Caption Generator
 
 1. **Upload Video**: Select an MP4 file using the upload interface
-2. **Choose Language**: Select between English and Hindi
-3. **Generate Captions**: The system will automatically:
-   - Extract audio from your video
-   - Process it through Whisper for speech recognition
-   - Generate SRT captions
+2. **Automatic Processing**: The system will automatically:
+   - Extract audio from your video using FFmpeg
+   - Process it through specialized Hindi2Hinglish Whisper model
+   - Generate smart caption segments with proper timing
    - Display video preview with captions
+3. **Customize Caption Position**: Use the dropdown to position captions at top or bottom
 4. **Preview & Export**: Use Remotion's interface to preview and render your captioned video
+5. **Upload New Video**: Click "Upload New Video" button to process another file
 
 
 ## 🛠️ API Endpoints
@@ -153,32 +161,55 @@ npm run lint   # Runs ESLint
 
 ## 📋 Dependencies
 
-### Backend
+### Backend (Node.js)
 - **express**: Web server framework
 - **multer**: File upload middleware
 - **fluent-ffmpeg**: FFmpeg wrapper for audio extraction
 - **cors**: Cross-origin resource sharing
 - **@ffmpeg-installer/ffmpeg**: FFmpeg installation
 
+### Backend (Python)
+- **torch**: PyTorch for deep learning
+- **transformers**: Hugging Face transformers library for Whisper
+- **librosa**: Audio processing and loading
+- **soundfile**: Audio file I/O
+- **numpy**: Numerical computations
+
 ### Frontend
 - **remotion**: Video creation framework
 - **react**: UI library
 - **tailwindcss**: CSS framework
-- **subtitles-parser**: SRT file parsing
 - **@remotion/media-utils**: Media utilities for Remotion
 
 
 
+## 🔧 Configuration
+
+### Whisper Model
+The application uses the **Oriserve/Whisper-Hindi2Hinglish-Swift** model from Hugging Face, which is specifically optimized for:
+- **Hindi speech recognition**
+- **Automatic Hindi-to-Hinglish conversion** (Roman script)
+- **Natural language flow** with proper word segmentation
+- **Fast processing** with optimized inference
+
+### Caption Segmentation
+- **Chunk Duration**: 8 seconds per audio segment
+- **Words Per Caption**: 6 words maximum for readability
+- **Frame Rate**: 30 FPS for smooth synchronization
+- **Auto-splitting**: Long sentences automatically broken into shorter segments
+
 ### Supported Languages
 Currently configured for:
-- English (`en`)
-- Hindi (`hi`)  
+- **Hindi/Hinglish**: Native support with specialized model
+- **English**: Can be added by modifying the model parameter
 
-Additional languages can be added by modifying the language selection in the frontend and backend processing.
+The Hinglish model is particularly effective for Indian content where speakers mix Hindi and English, providing natural Roman script output.
 
 ## 🙏 Acknowledgments
 
 - [OpenAI Whisper](https://github.com/openai/whisper) for the speech recognition model
+- [Oriserve/Whisper-Hindi2Hinglish-Swift](https://huggingface.co/Oriserve/Whisper-Hindi2Hinglish-Swift) for the specialized Hinglish model
+- [Hugging Face Transformers](https://huggingface.co/transformers) for the model implementation
 - [Whisper.cpp](https://github.com/ggerganov/whisper.cpp) for the C++ implementation
 - [Remotion](https://remotion.dev/) for the video composition framework
 - [FFmpeg](https://ffmpeg.org/) for video/audio processing

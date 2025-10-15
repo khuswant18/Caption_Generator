@@ -1,4 +1,28 @@
+# Uploads and temporary files
 uploads/
-node_modules/
 *.wav
 *.srt
+*.json
+
+# Node modules
+node_modules/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Environment variables
+.env
+
+# Hugging Face cache (models downloaded here)
+.cache/
+models/
+
+# Test files
+test_audio/
+test.json

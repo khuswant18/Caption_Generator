@@ -27,7 +27,7 @@ export const VideoComposition = ({ videoFile, captions, metadata, captionPositio
       width={metadata.width}
       height={metadata.height}
       defaultProps={{ videoURL, captions, captionPosition }} 
-    />
+    /> 
   );  
 };
 
